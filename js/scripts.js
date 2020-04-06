@@ -28,6 +28,15 @@ function Place (name, country, climate, rating) {
   this.rating = rating;
 }
 
+// var getKeys = function(place) {
+//   var keys = [];
+//   for (var key in place) {
+//     keys.push(key);
+//   }
+//   return keys
+// }
+
+
 // Place.prototype.appendDetails = function() {
 //   $("").append("<li> Country: " + this.country + "</li>");
 // }
@@ -40,7 +49,7 @@ var disneyLand = new Place("Disney Land", "USA", "Hot,Dry", "11/10");
 var vik = new Place("Vik", "Iceland", "Temperate", "Awesome!");
 var disneyWorld = new Place ("Disney World", "USA", "hot and humid", "12/10");
 var scottsdale = new Place ("Scottsdale, AZ", "USA", "too hot to be reasonable", "2/10");
-var pdx = new Place("Portland, Oregon", "USA", "rainy,depressing","7/10 good for tourism");
+var pdx = new Place("Portland, Oregon", "USA", "rainy, depressing","7/10 good for tourism");
 
 jessica.addPlace(vik);
 jessica.addPlace(disneyWorld);
@@ -58,7 +67,8 @@ tyler.addPlace(pdx);
 // User Interface Logic --------------------------------------------
 $(document).ready(function() {
   for (var i=0; i < julia.places.length; i++){
-    $(".juliaPlaces").append("<li>" + julia.places[i].name + "</li>");
+    $(".juliaPlaces").append("<li class='" + julia.places[i].name.slice(0, 4) + "'>" + julia.places[i].name + "</li>");
+    $("." + julia.places[i].name.slice(0, 4)).append("<ul><li>" + "test" + "</li></ul>")
   }
   $(".juliaPlaces").hide();
 
@@ -72,19 +82,20 @@ $(document).ready(function() {
   }
   $(".jessicaPlaces").hide();
 
+
   
   $("h4").click(function(){
     var nameClicked = $(this).attr("id");
 
-  if (nameClicked === "juliaClick"){
-    $(".julia").children().toggle();
-  } else if (nameClicked == "tylerClick") {
-    $(".tylerPlaces").toggle();
-  } else if (nameClicked = "jessicaClick") {
-    $(".jessicaPlaces").toggle();
-  }
+    if (nameClicked === "juliaClick"){
+      $(".julia").children().toggle();
+    } else if (nameClicked == "tylerClick") {
+      $(".tylerPlaces").toggle();
+    } else if (nameClicked = "jessicaClick") {
+      $(".jessicaPlaces").toggle();
+    }
 
-  })
+    })
 })
 
 $("li").click(function() {
